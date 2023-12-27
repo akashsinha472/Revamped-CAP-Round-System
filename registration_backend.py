@@ -1,14 +1,14 @@
 import mysql.connector as c
 
 def connect():
-       con = c.connect(host="localhost", user="root", passwd="Akash@472", database="sdp")
+       con = c.connect(host="localhost", user="root", passwd="", database="sdp")
        db = con.cursor()
        db.execute("create table if not exists registered(Application_ID VARCHAR(20) UNIQUE KEY NOT NULL,Registration_ID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,Password TEXT)")
        con.commit()
        con.close()                                                                        
 
 def update(password='',application_id=''):
-       con = c.connect(host="localhost", user="root", passwd="Akash@472", database="sdp")
+       con = c.connect(host="localhost", user="root", passwd="", database="sdp")
        db = con.cursor()
 
        db.execute("UPDATE registered SET password =%s where application_id=%s",(password,application_id))
@@ -17,7 +17,7 @@ def update(password='',application_id=''):
        con.close()
 
 def search(application_id=''):
-       con = c.connect(host="localhost", user="root", passwd="Akash@472", database="sdp")
+       con = c.connect(host="localhost", user="root", passwd="", database="sdp")
        db = con.cursor()
 
        db.execute("SELECT registration_id FROM registered WHERE application_id = %s and application_id = %s ", (application_id,application_id))
@@ -28,7 +28,7 @@ def search(application_id=''):
            return("Your registration id is: "+str(rows[0][0])+"\nNote down for login purpose.")
 
 def searchlogin(registration_id,password):
-       con = c.connect(host="localhost", user="root", passwd="Akash@472", database="sdp")
+       con = c.connect(host="localhost", user="root", passwd="", database="sdp")
        db = con.cursor()
 
        db.execute("SELECT * FROM registered WHERE registration_id = %s and registration_id = %s ", (registration_id,registration_id))
@@ -44,7 +44,7 @@ def searchlogin(registration_id,password):
               return(" You have not registered for the CAP Round process.Register first and then Login.")
 
 def updatechoice(password='',registration_id='',choice1='',choice2='',choice3='',choice4='',choice5='',choice6='',choice7='',choice8='',choice9='',choice10=''):
-       con = c.connect(host="localhost", user="root", passwd="Akash@472", database="sdp")
+       con = c.connect(host="localhost", user="root", passwd="", database="sdp")
        db = con.cursor()
        db.execute("SELECT * FROM registered WHERE registration_id = %s and registration_id = %s ", (registration_id,registration_id))
        rows = db.fetchall()
@@ -68,7 +68,7 @@ def updatechoice(password='',registration_id='',choice1='',choice2='',choice3=''
               return("Incorrect Registration ID.")
 
 def allotment(password='',registration_id=''):
-       con = c.connect(host="localhost", user="root", passwd="Akash@472", database="sdp")
+       con = c.connect(host="localhost", user="root", passwd="", database="sdp")
        db = con.cursor()
        db.execute("SELECT * FROM registered WHERE registration_id = %s and registration_id = %s ", (registration_id,registration_id))
        rows = db.fetchall()
@@ -90,7 +90,7 @@ def allotment(password='',registration_id=''):
 
 
 def searchinstitutelogin(username,password):
-       con = c.connect(host="localhost", user="root", passwd="Akash@472", database="sdp")
+       con = c.connect(host="localhost", user="root", passwd="", database="sdp")
        db = con.cursor()
 
        db.execute("SELECT * FROM institute WHERE username = %s and username = %s ", (username,username))
